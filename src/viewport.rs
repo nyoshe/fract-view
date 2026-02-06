@@ -13,4 +13,11 @@ impl Viewport {
         let im = self.center.im + (y as f64 - h as f64 / 2.0) * self.scale;
         Complex64::new(re, im)
     }
+
+    #[inline]
+    pub fn cmplx_to_px(&self, c: Complex64, w: usize, h: usize) -> (f64, f64) {
+        let x = (c.re - self.center.re) / self.scale + w as f64 / 2.0;
+        let y = (c.im - self.center.im) / self.scale + h as f64 / 2.0;
+        (x, y)
+    }
 }
